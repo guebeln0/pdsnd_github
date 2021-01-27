@@ -1,15 +1,15 @@
 ### Date created
-Include the date you created this project and README file.
+Project created 27.02.2021
 
 ### Project Title
-Replace the Project Title
+BikeShare project
 
 ### Description
-Describe what your project is about and what it does
+The bike share project allows you to explore the bike share usage in 3 different cities Chicago, New York city and Washington during the period January - June 2016. After choosing your city you can get some insights about the trips and users of the bike sharing.
 
 ### Files used
-Include the files used
+BikeShare.py
+Raw data are in 3 csv files. These are not included in this repo.
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Inspired by the Udacity Nanodegree - "Programming for data science with python"
