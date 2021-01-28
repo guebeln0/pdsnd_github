@@ -154,7 +154,7 @@ def trip_duration_stats(df):
     total_travel_time = df['Trip Duration'].sum()
     print('\nTotal travel time in the period: {:.0f} min'.format(total_travel_time / 60))
 
-    # TO DO: display mean travel time
+    # display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     print('\nAverage travel time in the period: {:.2f} min'.format(mean_travel_time / 60))
 
@@ -167,11 +167,11 @@ def user_stats(df,city):
     print('\nCalculating User Statistics...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
+    # Display counts of user types
     print(df['User Type'].value_counts())
 
 
-    # TO DO: Display counts of gender
+    # Display counts of gender
 
     # Washington has no information on its users gender or date of birth
     if city != 'washington':
