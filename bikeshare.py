@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 
-# Show which file name corresponds to which city 
+# Show which file name corresponds to which city
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -18,7 +18,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     cities = ['chicago', 'new york', 'washington']
     while True:
         city = input('\nYou can explore Chicago, New York or Washington. Type the city name you would like to explore?').lower()
@@ -28,7 +28,7 @@ def get_filters():
             print('I didn\'t understand that, {} is not a valid city name. Please check your spelling\n'.format(city.title()))
             continue
 
-    # TO DO: get user input for month (all, january, february, ... , june)
+    # get user input for month (all, january, february, ... , june)
     months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
     while True:
         month = input('\nWhich month are you interested in?\nPlease type all or one of the following month January, February, March, April, May or June').lower()
@@ -38,7 +38,7 @@ def get_filters():
             print('I didn\'t understand that, {} is not a valid month. Please check your spelling\n'.format(month.title()))
             continue
 
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+    # get user input for day of week (all, monday, tuesday, ... sunday)
     days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
     while True:
         day = input('\nWhich day(s) are you interested in?\nPlease type all or Monday, Tuesday, Wednesday, Thurday, Friday, Saturday or Sunday ').lower()
@@ -102,17 +102,17 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
+    # display the most common month
     months = ['January', 'February', 'March', 'April', 'May', 'June']
     common_month = df['month'].mode()[0]
     print('Most common month: ', months[common_month-1])
 
-    # TO DO: display the most common day of week
+    # display the most common day of week
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     common_day = df['day_of_week'].mode()[0]
     print('Most common day of the week: ', days[common_day])
 
-    # TO DO: display the most common start hour
+    # display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
 
     # find the most common hour (from 0 to 23)
@@ -155,7 +155,7 @@ def trip_duration_stats(df):
     total_travel_time = df['Trip Duration'].sum()
     print('\nTotal travel time in the period: {:.0f} min'.format(total_travel_time / 60))
 
-    # TO DO: display mean travel time
+    # display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     print('\nAverage travel time in the period: {:.2f} min'.format(mean_travel_time / 60))
 
@@ -168,11 +168,11 @@ def user_stats(df,city):
     print('\nCalculating User Statistics...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
+    # Display counts of user types
     print(df['User Type'].value_counts())
 
 
-    # TO DO: Display counts of gender
+    # Display counts of gender
 
     # Washington has no information on its users gender or date of birth
     if city != 'washington':
