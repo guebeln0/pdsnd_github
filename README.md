@@ -9,7 +9,7 @@ The bike share project allows you to explore the bike share usage in 3 different
 
 ### Files used
 BikeShare.py
-Raw data are in 3 csv files. These are not included in this repo.
+Raw data are in 3 csv files: chicago.csv, new_york_city.csv, washington.csv These are not included in this repo.
 
 ### Credits
 Inspired by the Udacity Nanodegree - "Programming for data science with python"
