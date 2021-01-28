@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 
+# Show which file name corresponds to which city 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -26,7 +27,7 @@ def get_filters():
         else:
             print('I didn\'t understand that, {} is not a valid city name. Please check your spelling\n'.format(city.title()))
             continue
-                
+
     # TO DO: get user input for month (all, january, february, ... , june)
     months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
     while True:
@@ -36,7 +37,7 @@ def get_filters():
         else:
             print('I didn\'t understand that, {} is not a valid month. Please check your spelling\n'.format(month.title()))
             continue
-    
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
     while True:
@@ -62,7 +63,7 @@ def load_data(city, month, day):
     Returns:
         df - pandas DataFrame containing city data filtered by month and day
     """
-    
+
     # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
 
@@ -72,7 +73,7 @@ def load_data(city, month, day):
     # extract month and day of week from Start Time to create new columns
     # New column month 1 = January ... 6 = June
     df['month'] = df['Start Time'].dt.month
-    
+
     # New column day_of_week 0 = Monday ... 6 = Sunday
     df['day_of_week'] = df['Start Time'].dt.dayofweek
 
@@ -81,7 +82,7 @@ def load_data(city, month, day):
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
-    
+
         # filter by month to create the new dataframe
         df = df[df['month'] == month]
 
@@ -91,7 +92,7 @@ def load_data(city, month, day):
          days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
          day = days.index(day)
          df = df[df['day_of_week'] == day]
-    
+
     return df
 
 
@@ -135,11 +136,11 @@ def station_stats(df):
     # TO DO: display most commonly used end station
     popular_end_station = df['Start Station'].mode()[0]
     print("Most used end station: ", popular_end_station)
-    
+
     # TO DO: display most frequent combination of start station and end station trip
     popular_start_end_station = df.groupby(['Start Station','End Station']).size().sort_values(ascending=False)[:1]
     print("Most travels where made between:\n", popular_start_end_station)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -149,7 +150,7 @@ def trip_duration_stats(df):
 
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
-    
+
     # Calculate the travel time in minutes
     total_travel_time = df['Trip Duration'].sum()
     print('\nTotal travel time in the period: {:.0f} min'.format(total_travel_time / 60))
@@ -163,16 +164,16 @@ def trip_duration_stats(df):
 
 
 def user_stats(df,city):
-    
+
     print('\nCalculating User Statistics...\n')
     start_time = time.time()
-    
+
     # TO DO: Display counts of user types
     print(df['User Type'].value_counts())
 
-    
+
     # TO DO: Display counts of gender
-    
+
     # Washington has no information on its users gender or date of birth
     if city != 'washington':
         # I decided to ignore the unknown / NaN values and assume the percentage is evenly distrubed
@@ -198,7 +199,7 @@ def raw_data(df):
     # Displays 5 raws of data at the time and prompt the user if they want to see more
     j = 0
     print(df.size)
-    while j < df.size + 5: 
+    while j < df.size + 5:
         print(df[j:j+5])
         raw_data = input('\nWould you like to see more? Enter yes or no.\n')
         if raw_data == 'yes':
@@ -206,7 +207,7 @@ def raw_data(df):
             continue
         else:
             break
-    
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -215,11 +216,11 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df,city)
-        
+
         raw_data_request = input('\nWould you like to see some of the raw data for trip information? Enter yes or no.\n')
         if raw_data_request.lower() == 'yes':
             raw_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
